@@ -11,6 +11,7 @@ from config import *
 
 supported_formats = (".jpg", ".jpeg", ".png", ".bmp", ".gif")
 cbz_extension = ".cbz"
+FULLSCREEN_DELAY = 5000  # milliseconds (5 seconds)
 
 def get_first_image(cbz_path):
     try:
@@ -34,7 +35,7 @@ def show_book_selection_screen():
 
     root = tk.Tk()
     root.title("Select Book")
-    root.after(100, lambda: set_fullscreen(root))
+    root.after(FULLSCREEN_DELAY, lambda: set_fullscreen(root))
 
     def quit_app(event=None):
         root.destroy()
@@ -195,7 +196,7 @@ def start_reader(start_cbz_index, cbz_files):
 
     root = tk.Tk()
     root.title("CBZ Image Viewer")
-    root.after(100, lambda: set_fullscreen(root))
+    root.after(FULLSCREEN_DELAY, lambda: set_fullscreen(root))
 
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
@@ -283,8 +284,7 @@ def show_folder_selection_screen(current_folder, first=False):
     if subfolders:
         root = tk.Tk()
         root.title("Select Folder")
-        delay = 5000 if first else 100
-        root.after(delay, lambda: set_fullscreen(root))
+        root.after(FULLSCREEN_DELAY, lambda: set_fullscreen(root))
 
         thumb_size = (160, 240)  # Slightly smaller for Pi performance
         columns = 4
@@ -376,7 +376,7 @@ def show_chapter_selection_screen(folder):
 
     root = tk.Tk()
     root.title(f"Select Chapter")
-    root.after(100, lambda: set_fullscreen(root))
+    root.after(FULLSCREEN_DELAY, lambda: set_fullscreen(root))
 
     thumb_size = (200, 300)
     columns = 4
