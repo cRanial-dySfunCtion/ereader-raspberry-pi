@@ -375,7 +375,6 @@ def show_chapter_selection_screen(folder):
 
     root = tk.Tk()
     root.title(f"Select Chapter")
-    # ...pack widgets...
     root.after(100, lambda: set_fullscreen(root))
 
     thumb_size = (200, 300)
@@ -420,6 +419,10 @@ def show_chapter_selection_screen(folder):
     def _on_mousewheel(event):
         canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
     canvas.bind_all("<MouseWheel>", _on_mousewheel)
+
+    def back_to_folders(event=None):
+        root.destroy()
+        show_folder_selection_screen(os.path.dirname(folder))
 
     root.bind("<Escape>", back_to_folders)
     root.mainloop()
