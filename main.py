@@ -432,7 +432,7 @@ def set_fullscreen(win):
     win.focus_force()
     win.attributes("-topmost", True)
     win.attributes("-topmost", False)
-    win.overrideredirect(True)  # Removes window borders/chrome for kiosk mode
+    # win.overrideredirect(True)  # REMOVE or comment out this line!
 
 # At the end of your file, start with the main library folder:
 if __name__ == "__main__":
