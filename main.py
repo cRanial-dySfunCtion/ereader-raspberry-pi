@@ -436,4 +436,10 @@ def set_fullscreen(win):
 
 # At the end of your file, start with the main library folder:
 if __name__ == "__main__":
+    # Create the first window with extra care
+    import time
+    root = tk.Tk()
+    root.title("Select Folder")
+    root.update_idletasks()
+    root.after(300, lambda: set_fullscreen(root))
     show_folder_selection_screen(library_folder)
