@@ -34,10 +34,7 @@ def show_book_selection_screen():
 
     root = tk.Tk()
     root.title("Select Book")
-    root.attributes("-fullscreen", True)
-    root.focus_force()
-    root.attributes("-topmost", True)
-    root.attributes("-topmost", False)
+    set_fullscreen(root)
 
     def quit_app(event=None):
         root.destroy()
@@ -435,6 +432,13 @@ def show_chapter_selection_screen(folder):
 
     root.bind("<Escape>", back_to_folders)
     root.mainloop()
+
+def set_fullscreen(win):
+    win.attributes("-fullscreen", True)
+    win.focus_force()
+    win.attributes("-topmost", True)
+    win.attributes("-topmost", False)
+    win.overrideredirect(True)  # Removes window borders/chrome for kiosk mode
 
 # At the end of your file, start with the main library folder:
 if __name__ == "__main__":
