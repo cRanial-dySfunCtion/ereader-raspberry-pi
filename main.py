@@ -286,10 +286,7 @@ def show_folder_selection_screen(current_folder):
     if subfolders:
         root = tk.Tk()
         root.title("Select Folder")
-        root.attributes("-fullscreen", True)
-        root.focus_force()
-        root.attributes("-topmost", True)
-        root.attributes("-topmost", False)
+        set_fullscreen(root)
 
         thumb_size = (160, 240)  # Slightly smaller for Pi performance
         columns = 4
@@ -378,10 +375,7 @@ def show_chapter_selection_screen(folder):
 
     root = tk.Tk()
     root.title(f"Select Chapter")
-    root.attributes("-fullscreen", True)
-    root.focus_force()
-    root.attributes("-topmost", True)
-    root.attributes("-topmost", False)
+    set_fullscreen(root)
 
     def back_to_folders(event=None):
         root.destroy()
