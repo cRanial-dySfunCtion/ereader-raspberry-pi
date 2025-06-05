@@ -34,7 +34,7 @@ def show_book_selection_screen():
 
     root = tk.Tk()
     root.title("Select Book")
-    set_fullscreen(root)
+    root.after(100, lambda: set_fullscreen(root))
 
     def quit_app(event=None):
         root.destroy()
