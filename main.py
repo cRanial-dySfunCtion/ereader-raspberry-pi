@@ -195,10 +195,7 @@ def start_reader(start_cbz_index, cbz_files):
 
     root = tk.Tk()
     root.title("CBZ Image Viewer")
-    root.attributes("-fullscreen", True)
-    root.focus_force()
-    root.attributes("-topmost", True)
-    root.attributes("-topmost", False)
+    root.after(100, lambda: set_fullscreen(root))
 
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
@@ -286,7 +283,7 @@ def show_folder_selection_screen(current_folder):
     if subfolders:
         root = tk.Tk()
         root.title("Select Folder")
-        set_fullscreen(root)
+        root.after(100, lambda: set_fullscreen(root))
 
         thumb_size = (160, 240)  # Slightly smaller for Pi performance
         columns = 4
@@ -378,11 +375,8 @@ def show_chapter_selection_screen(folder):
 
     root = tk.Tk()
     root.title(f"Select Chapter")
-    set_fullscreen(root)
-
-    def back_to_folders(event=None):
-        root.destroy()
-        show_folder_selection_screen(os.path.dirname(folder))
+    # ...pack widgets...
+    root.after(100, lambda: set_fullscreen(root))
 
     thumb_size = (200, 300)
     columns = 4
@@ -435,7 +429,7 @@ def set_fullscreen(win):
     win.focus_force()
     win.attributes("-topmost", True)
     win.attributes("-topmost", False)
-    # win.overrideredirect(True)  # REMOVE or comment out this line!
+    # win.overrideredirect(True)  # Keep this commented out!
 
 # At the end of your file, start with the main library folder:
 if __name__ == "__main__":
