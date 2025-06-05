@@ -275,7 +275,7 @@ def start_reader(start_cbz_index, cbz_files):
     show_image(current_index)
     root.mainloop()
 
-def show_folder_selection_screen(current_folder):
+def show_folder_selection_screen(current_folder, first=False):
     subfolders = [f for f in os.listdir(current_folder)
                   if os.path.isdir(os.path.join(current_folder, f)) and not f.startswith('.')]
     subfolders.sort(key=natural_sort_key)
@@ -283,7 +283,8 @@ def show_folder_selection_screen(current_folder):
     if subfolders:
         root = tk.Tk()
         root.title("Select Folder")
-        root.after(100, lambda: set_fullscreen(root))
+        delay = 5000 if first else 100
+        root.after(delay, lambda: set_fullscreen(root))
 
         thumb_size = (160, 240)  # Slightly smaller for Pi performance
         columns = 4
@@ -436,10 +437,4 @@ def set_fullscreen(win):
 
 # At the end of your file, start with the main library folder:
 if __name__ == "__main__":
-    # Create the first window with extra care
-    import time
-    root = tk.Tk()
-    root.title("Select Folder")
-    root.update_idletasks()
-    root.after(300, lambda: set_fullscreen(root))
-    show_folder_selection_screen(library_folder)
+    show_folder_selection_screen(library_folder, first=True)
