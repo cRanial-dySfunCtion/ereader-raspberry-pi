@@ -350,13 +350,16 @@ def show_folder_selection_screen(current_folder):
             canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
         canvas.bind_all("<MouseWheel>", _on_mousewheel)
 
-        # Only bind Esc if not at the main folder
+        # Bind Esc: close if at main folder, go up if not
         if os.path.abspath(current_folder) != os.path.abspath(library_folder):
             def back_to_parent(event=None):
                 root.destroy()
                 show_folder_selection_screen(os.path.dirname(current_folder))
             root.bind("<Escape>", back_to_parent)
-        # else: do not bind Esc
+        else:
+            def quit_app(event=None):
+                root.destroy()
+            root.bind("<Escape>", quit_app)
 
         root.mainloop()
     else:
